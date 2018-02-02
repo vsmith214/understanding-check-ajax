@@ -1,4 +1,3 @@
-
 /*
 Your Tasks:
 
@@ -14,29 +13,45 @@ Your Tasks:
 */
 
 // ALL YOUR CODE HERE
+fetch('/dogs')
+    .then(dogs => renderView(dogs))
+    .catch(err => {
+        throw new Error('Something went wrong');
+    });
 
+fetch('/cats')
+    .then(cats => renderView(cats))
+    .catch(err => {
+        throw new Error('Something went wrong');
+    });
+
+fetch('/dragons')
+    .then(dragons => renderView(dragons))
+    .catch(err => {
+        throw new Error('Something went wrong');
+    });
 
 //This function takes an array of animal objects, and renders them on the page.
 //You don't need to change this function!
 
 function renderView(arrOfData) {
-  const view = document.getElementById('content');
-  //remove anything in the content div if there is something
-  if (view.firstChild) view.removeChild(view.firstChild);
+    const view = document.getElementById('content');
+    //remove anything in the content div if there is something
+    if (view.firstChild) view.removeChild(view.firstChild);
 
-  //create a new div
-  const list = document.createElement('div');
-  list.className = 'list'
+    //create a new div
+    const list = document.createElement('div');
+    list.className = 'list'
 
-  //run through the list of animals
-  arrOfData.forEach(animal => {
-    //create div for each
-    const item = document.createElement('div');
-    //set the innerHTML to include the animals name and image
-    item.innerHTML = `<div class="item"><h2>${animal.name}</h2><img src=${animal.image} /></div>`
-    //append the new div to the list
-    list.appendChild(item);
-  })
-  //append the new list to the content div
-  view.appendChild(list);
+    //run through the list of animals
+    arrOfData.forEach(animal => {
+            //create div for each
+            const item = document.createElement('div');
+            //set the innerHTML to include the animals name and image
+            item.innerHTML = `<div class="item"><h2>${animal.name}</h2><img src=${animal.image} /></div>`
+                //append the new div to the list
+            list.appendChild(item);
+        })
+        //append the new list to the content div
+    view.appendChild(list);
 }
